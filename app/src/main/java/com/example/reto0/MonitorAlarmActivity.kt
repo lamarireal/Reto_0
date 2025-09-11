@@ -7,13 +7,11 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class MonitorAlarmActivity : AppCompatActivity() {
-
-    //guardar los datos
-    companion object {
-        val logChanges = mutableListOf<String>()
-    }
 
     private lateinit var btnChange: Button
     private lateinit var btnLog: Button
@@ -42,7 +40,10 @@ class MonitorAlarmActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        btnPlano2.setOnClickListener {  }
+        btnPlano2.setOnClickListener {
+            val intent = Intent(this, MonitorCalifaccionActivity::class.java)
+            startActivity(intent)
+        }
 
         updateUI()
     }
@@ -51,7 +52,7 @@ class MonitorAlarmActivity : AppCompatActivity() {
         estadoAlarm = !estadoAlarm
 
         val estadoText = if (estadoAlarm) "Activado" else "Desactivado"
-        logChanges.add("Estado de las alarmas cambiado a: $estadoText")
+        LogManager.addLog("Estado de las alarmas cambiado a: $estadoText")
 
         updateUI()
     }

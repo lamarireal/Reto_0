@@ -24,6 +24,7 @@
         <activity android:name=".LoginActivity"></activity>
         <activity android:name=".MonitorAlarmActivity"></activity>
         <activity android:name=".LogActivity"></activity>
+        <activity android:name=".MonitorCalifaccionActivity"></activity>
     </application>
 
 </manifest>
