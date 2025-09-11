@@ -7,32 +7,32 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.reto0.MonitorAlarmActivity.Companion.logChanges
 
-class MonitorAlarmActivity : AppCompatActivity() {
-
-    //guardar los datos
-    companion object {
-        val logChanges = mutableListOf<String>()
-    }
+class MonitorCalifaccionActivity : AppCompatActivity() {
 
     private lateinit var btnChange: Button
     private lateinit var btnLog: Button
-    private lateinit var btnPlano2: Button
+    private lateinit var btnPlano1: Button
+
     private lateinit var textEstado: TextView
+
     private lateinit var image: ImageView
 
-    private var estadoAlarm: Boolean = false
+
+    private var estadoManejo: Boolean = false
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_alarm)
+        setContentView(R.layout.activity_califaccion)
 
-        btnChange = findViewById(R.id.btnCambiar)
+        btnChange = findViewById(R.id.btnChange)
         btnLog = findViewById(R.id.btnLog)
-        btnPlano2 = findViewById(R.id.btnPlano1)
+        btnPlano1 = findViewById(R.id.btnPlano1)
 
         textEstado = findViewById(R.id.tvEstado)
+
         image = findViewById(R.id.imageView)
 
         btnChange.setOnClickListener { changeModeAlarm() }
@@ -42,23 +42,23 @@ class MonitorAlarmActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        btnPlano2.setOnClickListener {  }
+        btnPlano1.setOnClickListener {  }
 
         updateUI()
     }
 
     private fun changeModeAlarm() {
-        estadoAlarm = !estadoAlarm
+        estadoManejo = !estadoManejo
 
-        val estadoText = if (estadoAlarm) "Activado" else "Desactivado"
-        logChanges.add("Estado de las alarmas cambiado a: $estadoText")
+        val estadoText = if (estadoManejo) "Activado" else "Desactivado"
+        logChanges.add("Estado de califaccion cambiado a: $estadoText")
 
         updateUI()
     }
 
 
     private fun updateUI() {
-        if (!estadoAlarm) {
+        if (!estadoManejo) {
             image.setImageResource(R.drawable.plano_p1_sensor_apagado)
             textEstado.text = "Desactivado"
         } else {

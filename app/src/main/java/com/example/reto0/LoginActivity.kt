@@ -27,21 +27,24 @@ class LoginActivity : AppCompatActivity() {
 
         btnIniciar = findViewById(R.id.btnLogin)
 
-        btnIniciar.setOnClickListener { loginWithFireBase() }
+        btnIniciar.setOnClickListener { login() }
     }
 
-    private fun loginWithFireBase() {
+    private fun login() {
         val nameUser = name.text.toString()
         val emailUser = email.text.toString()
         val passUser = password.text.toString()
 
         if (nameUser != "" && emailUser != "" && passUser != "") {
-            //AQUI DEBE Q SER LA LOGICA DE CONECTAR CON BASE DE DATOS
-            val intent = Intent(this, MonitorAlarmActivity::class.java).apply {
-                putExtra("Nombre", nameUser)
+            if (emailUser == "admin" && passUser == "admin") {
+                val intent = Intent(this, MonitorAlarmActivity::class.java).apply {
+                    putExtra("Nombre", nameUser)
+                }
+                startActivity(intent)
+                finish()
+            } else {
+                Toast.makeText(this, "email o contraseña no son correctos", Toast.LENGTH_SHORT).show()
             }
-            startActivity(intent)
-            finish()
         } else {
             Toast.makeText(this, "Llena todos los campos", Toast.LENGTH_SHORT).show()
         }
