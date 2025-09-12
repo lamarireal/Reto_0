@@ -19,7 +19,7 @@ class LogActivity : AppCompatActivity() {
         val adapter = ArrayAdapter(
             this,
             android.R.layout.simple_list_item_1,
-            MonitorAlarmActivity.logChanges
+            LogManager.logChanges
         )
         listView.adapter = adapter
 
